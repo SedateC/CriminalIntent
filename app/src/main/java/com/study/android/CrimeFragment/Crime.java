@@ -12,12 +12,36 @@ public class Crime {
     private String mTitle;
     private Date mDate;
     private boolean mSolved;
+    private String mSupect;
+    private String mCallContact;
 
     public Crime() {
-        mId = UUID.randomUUID();
+      this(UUID.randomUUID());
+    }
+    public Crime(UUID id) {
+        mId = id;
         mDate = new Date();
     }
 
+    public String getSupect() {
+        return mSupect;
+    }
+
+    public String getCallContact() {
+        return mCallContact;
+    }
+
+    public void setCallContact(String callContact) {
+        mCallContact = callContact;
+    }
+
+    public void setSupect(String supect) {
+        mSupect = supect;
+    }
+
+    public String getPhotoFileName(){
+        return "IMG_"+getId().toString()+".jpg";
+    }
     public UUID getId() {
         return mId;
     }
