@@ -40,7 +40,7 @@ public class TimePickerFragment extends DialogFragment {
         Date date = (Date) getArguments().getSerializable(ARG_DATE);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-       final int year = calendar.get(Calendar.YEAR);
+        final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
         //final int second = calendar.get(Calendar.SECOND); 没有秒方法

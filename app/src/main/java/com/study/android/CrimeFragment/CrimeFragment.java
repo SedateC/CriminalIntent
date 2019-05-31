@@ -304,7 +304,7 @@ public class CrimeFragment extends Fragment {//选择支持库版Fragment V4
             updateDate();
             updateTime();
         }
-        if (requestCode == REQUEST_CONTACT&&data!=null){
+        if (requestCode == REQUEST_CONTACT && data !=null){
             Uri contactUri = data.getData();
             String callContactId = null;
             String[] queryFilds = new String[]{

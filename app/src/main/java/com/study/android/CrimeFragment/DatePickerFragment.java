@@ -31,8 +31,11 @@ public class DatePickerFragment extends DialogFragment {
         datePickerFragment.setArguments(args);
         return datePickerFragment;
     }
+    /*
+    * 返回给启动这个time的Fragment data信息
+    * */
     private void sendResult(int resultCode,Date date){
-        if (getTargetFragment() ==null){
+        if (getTargetFragment() == null){
             return;
         }
         Intent intent = new Intent();

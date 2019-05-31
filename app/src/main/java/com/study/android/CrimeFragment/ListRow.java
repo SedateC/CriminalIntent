@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 * */
 public class ListRow extends RecyclerView.ViewHolder {
     public ImageView mThumbnail;//极小的
-
     public ListRow(@NonNull View itemView) {
         super(itemView);
     }

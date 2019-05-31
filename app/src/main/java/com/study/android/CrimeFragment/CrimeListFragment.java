@@ -34,7 +34,7 @@ public class CrimeListFragment extends Fragment {
     //搞定了 Adapter ，最后要做的就是将它和 RecyclerView 关联起来。实现一个设置 CrimeList-
     //Fragment 用户界面的 updateUI 方法，该方法创建 CrimeAdapter ，然后设置给 RecyclerView ，
     private CrimeAdapter mAdapter;
-    private Boolean mSubTitleVisiable =false;
+    private Boolean mSubTitleVisiable = false;
     private static final int REQUEST_CRIME = 1;
     private int mPostion;
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
@@ -55,7 +55,7 @@ public class CrimeListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_crime_list,container,false);
         //旋转屏幕的时候提取原来工具栏的状态
-        if (savedInstanceState!=null){
+        if (savedInstanceState != null){
             mSubTitleVisiable = savedInstanceState.getBoolean(SAVED_SUBTITLE_VISIBLE);
         }
         //这里创建的时候就给mCrimeRecycleVie设置了管理器和适配器
@@ -82,13 +82,13 @@ public class CrimeListFragment extends Fragment {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
 
-        if (mAdapter==null){
+        if (mAdapter == null){
             mAdapter = new CrimeAdapter(crimes); //这里创建了每一项
             mCrimeRecycleView.setAdapter(mAdapter);
         }else {//使用 int 参数更新DATA
            // mAdapter.mCrimes = CrimeLab.get(getActivity()).getCrimes();
             mAdapter.setCrimes(crimes);
-            mCrimeRecycleView.setAdapter(mAdapter);
+            mCrimeRecycleView.setAdapter(mAdapter);//刷新
           //mAdapter.notifyDataSetChanged();
            // mAdapter.notifyItemChanged(mPostion); //部分重绘
         }
@@ -118,14 +118,14 @@ public class CrimeListFragment extends Fragment {
         private Crime mCrime;
         private ImageView mSolvedImageView;
 
-        public CrimeHolder(LayoutInflater inflater,ViewGroup parent) {
+        public CrimeHolder(LayoutInflater inflater,ViewGroup parent) { //构造方法
             //父类够构造方法很多，这里需要个VIEW
             super(inflater.inflate(R.layout.list_item_crime, parent, false));
             //ViewHolder 父类中有itemView 就是list_item_crime中的id
             mTitleTextView = itemView.findViewById(R.id.Crime_title);
             mDateTextView = itemView.findViewById(R.id.Crime_date);
             mSolvedImageView = itemView.findViewById(R.id.Crime_solved);
-            itemView.setOnClickListener(this);//基本上每个类都有自己的itemVIEW inflate
+            itemView.setOnClickListener(this);//基本上每个Holder类都有自己的  itemVIEW inflate
 
         }
         public void bind(Crime crime){
@@ -185,12 +185,12 @@ public class CrimeListFragment extends Fragment {
         public CrimeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             //getActivity()获取和Fragment绑定的Activity 可能为空
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            return new CrimeHolder(layoutInflater,parent);//这个holder返回给视图界面
+            return new CrimeHolder(layoutInflater,parent);//这个holder返回给视图界面 返回给下面的方法onBindViewHolder
         }
 
 
         @Override
-        public void onBindViewHolder(@NonNull CrimeHolder holder, int position) {
+        public void onBindViewHolder(@NonNull CrimeHolder holder, int position) { //什么时候调用
             //现在，只要取到一个 Crime ， CrimeHolder 就会刷新显示 TextView 标题视图和 TextView 日
             //期视图。 这里的CrimeHolder holder 代表即将传入的一个 new holder， LayoutInflater.from(getActivity())完到这个方法
             Crime crime = mCrimes.get(position);
@@ -245,6 +245,10 @@ public class CrimeListFragment extends Fragment {
                  return super.onOptionsItemSelected(item);
         }
     }
+
+    /*
+    * 旋转状态
+    * */
     private void updateSubtitle(){
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         int crimeLabCount = crimeLab.getCrimes().size();

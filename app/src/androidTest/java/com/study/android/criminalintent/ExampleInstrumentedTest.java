@@ -23,4 +23,5 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.study.android.criminalintent", appContext.getPackageName());
     }
+
 }

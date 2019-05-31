@@ -97,7 +97,7 @@ public class CrimePagerActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int  position, float positionOffset, int positionOffsetPixels) {
-                if(position==0){
+                if(position == 0){
                     mbtn_start.setVisibility(View.INVISIBLE);
                     mbtn_end.setVisibility(View.VISIBLE);
                 }else if (position == mCrimes.size()-1){
